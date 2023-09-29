@@ -30,20 +30,6 @@ export async function signUpUser({
   });
 
   if (error !== null) throw error;
-  if (
-    data.session === null ||
-    data.user === null ||
-    data.user.email === undefined
-  )
-    throw "Failed to create account";
-
-  await AsyncStorage.setItem(
-    "session",
-    JSON.stringify({
-      access_token: data.session.access_token,
-      refresh_token: data.session.refresh_token,
-    } as StoredSession)
-  );
 
   return data.session;
 }
