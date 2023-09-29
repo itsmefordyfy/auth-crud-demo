@@ -1,8 +1,14 @@
-import { Text, Button, Card, ActivityIndicator } from "react-native-paper";
+import {
+  Text,
+  Button,
+  Card,
+  ActivityIndicator,
+  HelperText,
+} from "react-native-paper";
 import { FormTextInput } from "../components";
 import { createFormState } from "../components";
 import { signUpUser } from "../auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Session } from "@supabase/supabase-js";
 import { supabaseClient } from "../supabase-client";
 import { View } from "react-native";
@@ -19,9 +25,46 @@ export function SignUpScreen() {
   });
 
   const [message, setMessage] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [generalError, setGeneralError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const passwordCheck = () => {
+    if (formState.state.confirmPassword !== formState.state.password) {
+      setPasswordError("Password did not match");
+    } else {
+      setPasswordError(null);
+    }
+    console.log(formState.state);
+  };
+
   const handleCreate = () => {
+    passwordCheck();
+    if (passwordError !== null) return;
+
+    if (
+      formState.state.firstName.length === 0 ||
+      formState.state.lastName.length === 0
+    ) {
+      setGeneralError("Name is empty");
+    } else if (
+      !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(
+        formState.state.phoneNumber
+      )
+    ) {
+      setGeneralError("Invalid Phone Number");
+    } else if (formState.state.email.length === 0) {
+      setGeneralError("Email is empty");
+    } else if (
+      !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(formState.state.email)
+    ) {
+      setGeneralError("Invalid Email");
+    } else {
+      setGeneralError(null);
+    }
+
+    if (generalError !== null) return;
+
     setLoading(true);
     signUpUser({
       email: formState.state.email,
@@ -83,8 +126,20 @@ export function SignUpScreen() {
           formState={formState}
           fieldName="confirmPassword"
         />
+        <HelperText
+          type="error"
+          visible={
+            passwordError !== null || generalError !== null || message !== null
+          }
+        >
+          {passwordError !== null
+            ? passwordError
+            : generalError !== null
+            ? generalError
+            : message}
+        </HelperText>
         {loading && <ActivityIndicator />}
-        {message && <Text style={{ color: "tomato" }}>{message}</Text>}
+
         <Button
           mode="contained"
           style={{
