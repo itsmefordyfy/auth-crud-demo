@@ -1,5 +1,5 @@
 export { signUpUser, UserInfo } from "./sign-up";
-export { getSession, loginUser } from "./login";
+export { getSession, loginUser, logoutUser } from "./login";
 
 export interface StoredSession {
   access_token: string;

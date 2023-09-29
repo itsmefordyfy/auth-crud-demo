@@ -47,3 +47,7 @@ export async function loginUser(email: string, password: string) {
     } as StoredSession)
   );
 }
+
+export async function logoutUser() {
+  await supabaseClient.auth.signOut({ scope: "global" });
+}
