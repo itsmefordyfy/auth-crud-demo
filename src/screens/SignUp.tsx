@@ -5,10 +5,10 @@ import { signUpUser } from "../auth";
 import { useState } from "react";
 import { Session } from "@supabase/supabase-js";
 import { supabaseClient } from "../supabase-client";
+import { View } from "react-native";
+import { Link, router } from "expo-router";
 
 export function SignUpScreen() {
-  const [session, setSession] = useState<Session | null>(null);
-
   const formState = createFormState({
     email: "",
     password: "",
@@ -18,26 +18,21 @@ export function SignUpScreen() {
     phoneNumber: "",
   });
 
-  return session !== null ? (
-    <>
-      <Text>Please check your email.</Text>
-      <Button
-        onPress={() => {
-          if (session.user.email !== undefined) {
-            supabaseClient.auth.resend({
-              email: session.user.email,
-              type: "signup",
-            });
-          }
-        }}
-      >
-        Resend verification
-      </Button>
-    </>
-  ) : (
-    <>
-      <Card style={{ alignSelf: "center" }}>
-        <FormTextInput label="E-mail" formState={formState} fieldName="email" />
+  return (
+    <View
+      style={{
+        justifyContent: "center",
+        alignContent: "center",
+        flex: 1,
+      }}
+    >
+      <Card style={{ alignSelf: "center", padding: 24 }}>
+        <FormTextInput
+          label="E-mail"
+          inputMode="email"
+          formState={formState}
+          fieldName="email"
+        />
         <FormTextInput
           label="First Name"
           formState={formState}
@@ -50,6 +45,7 @@ export function SignUpScreen() {
         />
         <FormTextInput
           label="Phone Number"
+          inputMode="tel"
           formState={formState}
           fieldName="phoneNumber"
         />
@@ -66,6 +62,11 @@ export function SignUpScreen() {
           fieldName="confirmPassword"
         />
         <Button
+          mode="contained"
+          style={{
+            marginHorizontal: 12,
+            marginVertical: 8,
+          }}
           onPress={() => {
             signUpUser({
               email: formState.state.email,
@@ -74,15 +75,21 @@ export function SignUpScreen() {
               password: formState.state.password,
               phoneNumber: formState.state.phoneNumber,
             })
-              .then((newSession) => {
-                setSession(newSession);
+              .then((_newSession) => {
+                router.replace("/verification");
               })
               .catch((_e: any) => {});
           }}
         >
           Create account
         </Button>
+        <View style={{ flexDirection: "row" }}>
+          <Text>Already have an account? </Text>
+          <Link href={"login"} style={{ color: "tomato" }}>
+            Login
+          </Link>
+        </View>
       </Card>
-    </>
+    </View>
   );
 }

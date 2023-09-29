@@ -19,6 +19,7 @@ export const FormTextInput = <T extends FormRecord>(
   return (
     <TextInput
       value={formState[fieldName]}
+      mode="outlined"
       style={{ margin: 4 }}
       {...props}
       onChangeText={handleOnChange}
