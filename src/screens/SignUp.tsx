@@ -1,4 +1,4 @@
-import { Text, Button, Card } from "react-native-paper";
+import { Text, Button, Card, ActivityIndicator } from "react-native-paper";
 import { FormTextInput } from "../components";
 import { createFormState } from "../components";
 import { signUpUser } from "../auth";
@@ -17,6 +17,28 @@ export function SignUpScreen() {
     lastName: "",
     phoneNumber: "",
   });
+
+  const [message, setMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleCreate = () => {
+    setLoading(true);
+    signUpUser({
+      email: formState.state.email,
+      firstName: formState.state.firstName,
+      lastName: formState.state.lastName,
+      password: formState.state.password,
+      phoneNumber: formState.state.phoneNumber,
+    })
+      .then((_newSession) => {
+        setLoading(false);
+        router.replace("/verification");
+      })
+      .catch((e: any) => {
+        setMessage(e);
+        setLoading(false);
+      });
+  };
 
   return (
     <View
@@ -61,25 +83,15 @@ export function SignUpScreen() {
           formState={formState}
           fieldName="confirmPassword"
         />
+        {loading && <ActivityIndicator />}
+        {message && <Text style={{ color: "tomato" }}>{message}</Text>}
         <Button
           mode="contained"
           style={{
             marginHorizontal: 12,
             marginVertical: 8,
           }}
-          onPress={() => {
-            signUpUser({
-              email: formState.state.email,
-              firstName: formState.state.firstName,
-              lastName: formState.state.lastName,
-              password: formState.state.password,
-              phoneNumber: formState.state.phoneNumber,
-            })
-              .then((_newSession) => {
-                router.replace("/verification");
-              })
-              .catch((_e: any) => {});
-          }}
+          onPress={handleCreate}
         >
           Create account
         </Button>
