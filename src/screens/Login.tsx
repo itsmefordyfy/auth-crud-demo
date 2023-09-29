@@ -1,9 +1,10 @@
-import { Button, Card, Text } from "react-native-paper";
+import { ActivityIndicator, Button, Card, Text } from "react-native-paper";
 import { FormTextInput } from "../components";
 import { createFormState } from "../components";
 import { loginUser } from "../auth";
 import { Link } from "expo-router";
 import { View } from "react-native";
+import { useState } from "react";
 
 export function LoginScreen() {
   const formState = createFormState({
@@ -11,11 +12,18 @@ export function LoginScreen() {
     password: "",
   });
 
+  const [message, setMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
   const handleLogin = () => {
+    setLoading(true);
     loginUser(formState.state.email, formState.state.password)
-      .then(() => {})
-      .catch((_message) => {
-        //todo display error in ui
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((errorMessage) => {
+        setMessage(errorMessage);
+        setLoading(false);
       });
   };
 
@@ -36,6 +44,8 @@ export function LoginScreen() {
           formState={formState}
           fieldName="password"
         />
+        {loading && <ActivityIndicator />}
+        {message && <Text style={{ color: "tomato" }}>{message}</Text>}
         <Button
           mode="contained"
           onPress={handleLogin}
@@ -56,5 +66,3 @@ export function LoginScreen() {
     </View>
   );
 }
-
-import { StyleSheet } from "react-native";
