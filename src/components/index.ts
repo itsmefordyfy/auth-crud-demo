@@ -1,2 +1,3 @@
 export { FormProps, createFormState, FormRecord, FormState } from "./FormProps";
-export { FormTextInput } from "./FormTextInput";
+export { FormTextInput, FormTextInputProps } from "./FormTextInput";
+export { PromiseView, PromiseViewProps } from "./PromiseView";
