@@ -1,20 +1,17 @@
-import { ReactNode, useEffect, useState } from "react";
 import { getSession } from "../src/auth";
-import { HomeScreen, LoginScreen } from "../src/screens";
-import { Session } from "@supabase/supabase-js";
-import { ActivityIndicator } from "react-native-paper";
+import { HomeScreen } from "../src/screens";
 import { PromiseView } from "../src/components";
+import { Redirect } from "expo-router";
 
 export default function Page() {
   return (
     <PromiseView
       promise={getSession()}
       loadedView={(session) => {
-        return session === null ? (
-          <LoginScreen />
-        ) : (
-          <HomeScreen jwt={session.access_token} />
-        );
+        if (session === null) {
+          return <Redirect href="/login" />;
+        }
+        return <HomeScreen jwt={session.access_token} />;
       }}
     />
   );

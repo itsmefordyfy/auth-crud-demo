@@ -35,15 +35,15 @@ export async function loginUser(email: string, password: string) {
     password: password,
   });
 
-  if (error !== null) {
+  if (error !== null && data.session === null) {
     throw error.message;
   }
 
   await AsyncStorage.setItem(
     "session",
     JSON.stringify({
-      access_token: data.session.access_token,
-      refresh_token: data.session.refresh_token,
+      access_token: data.session!.access_token,
+      refresh_token: data.session!.refresh_token,
     } as StoredSession)
   );
 }

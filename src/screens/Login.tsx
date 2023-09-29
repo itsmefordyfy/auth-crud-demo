@@ -2,7 +2,7 @@ import { ActivityIndicator, Button, Card, Text } from "react-native-paper";
 import { FormTextInput } from "../components";
 import { createFormState } from "../components";
 import { loginUser } from "../auth";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { View } from "react-native";
 import { useState } from "react";
 
@@ -20,6 +20,7 @@ export function LoginScreen() {
     loginUser(formState.state.email, formState.state.password)
       .then(() => {
         setLoading(false);
+        router.replace("/");
       })
       .catch((errorMessage) => {
         setMessage(errorMessage);
