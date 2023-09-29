@@ -29,7 +29,7 @@ export async function signUpUser({
     },
   });
 
-  if (error !== null) throw error;
+  if (error !== null) throw error.message;
 
   return data.session;
 }
