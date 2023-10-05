@@ -1,13 +1,9 @@
-import 'react-native-url-polyfill/auto';
+import "react-native-url-polyfill/auto";
 import { createClient } from "@supabase/supabase-js";
 
-// const SUPABASE_CONNECTION_INFO = {
-//   url: `https://${process.env.SUPABASE_REF_ID}-domain.com`,
-//   key: `${process.env.SUPABASE_PUB_KEY}`,
-// };
 const SUPABASE_CONNECTION_INFO = {
-  url: "https://bafjoakbylnnuyfjbggj.supabase.co",
-  key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhZmpvYWtieWxubnV5ZmpiZ2dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU5NTkzNDgsImV4cCI6MjAxMTUzNTM0OH0.dp-WDCe5Xt2WtnKyRl_D3A02Nx_tPL9sNI7nSJFslKU",
+  url: "https://hotjfoodwumwghexhcqg.supabase.co",
+  key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvdGpmb29kd3Vtd2doZXhoY3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMzkxMzYsImV4cCI6MjAxMTkxNTEzNn0.iAKeWl876vKSFLy9ELWatRbPsVOh2S8UPLE3-6klilI",
 };
 
 export const supabaseClient = createClient(
