@@ -37,13 +37,19 @@ export function LoginScreen() {
       }}
     >
       <Card style={{ alignSelf: "center", padding: 24 }}>
-        <FormTextInput label="E-mail" formState={formState} fieldName="email" />
+        <FormTextInput
+          label="E-mail"
+          formState={formState}
+          fieldName="email"
+          textContentType="emailAddress"
+        />
         <FormTextInput
           label="Password"
           placeholder="Password"
           secureTextEntry
           formState={formState}
           fieldName="password"
+          textContentType="password"
         />
         {loading && <ActivityIndicator />}
         {message && <Text style={{ color: "tomato" }}>{message}</Text>}

@@ -97,16 +97,19 @@ export function SignUpScreen() {
           inputMode="email"
           formState={formState}
           fieldName="email"
+          textContentType="emailAddress"
         />
         <FormTextInput
           label="First Name"
           formState={formState}
           fieldName="firstName"
+          textContentType="givenName"
         />
         <FormTextInput
           label="Last Name"
           formState={formState}
           fieldName="lastName"
+          textContentType="familyName"
         />
         <FormTextInput
           label="Phone Number"

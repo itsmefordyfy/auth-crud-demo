@@ -187,7 +187,7 @@ function PostViewer({ user }: ContentProps) {
             flex: 1,
             padding: 8,
           }}
-          data={data?.sort((a, b) => Number(a.id) - Number(b.id))}
+          data={data}
           renderItem={({ item }) => (
             <ItemCard
               item={item}
