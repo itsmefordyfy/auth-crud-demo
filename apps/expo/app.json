@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "supabook",
+    "slug": "supabook",
+    "version": "1.0.0",
+    "scheme": "supabook",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.supabook.app"
+    },
+    "android": {
+      "package": "com.supabook.app",
+      "versionCode": 1
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "fbeaedc3-f0e6-401f-b5c5-683fa28d0961"
+      }
+    },
+    "owner": "neilz"
+  }
+}
