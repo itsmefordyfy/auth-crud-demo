@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Supabook</title>
+        <title>auth-crud-demo</title>
         <meta
           name="description"
           content="Expo + Next.js with Solito. By Fernando Rojo."

@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "supabook",
-    "slug": "supabook",
+    "name": "auth-crud-demo",
+    "slug": "auth-crud-demo",
     "version": "1.0.0",
-    "scheme": "supabook",
+    "scheme": "auth-crud-demo",
     "platforms": [
       "ios",
       "android"
     ],
     "ios": {
-      "bundleIdentifier": "com.supabook.app"
+      "bundleIdentifier": "com.auth-crud-demo.app"
     },
     "android": {
-      "package": "com.supabook.app",
+      "package": "com.auth-crud-demo.app",
       "versionCode": 1
     },
     "plugins": [

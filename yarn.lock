@@ -3909,6 +3909,51 @@ __metadata:
   languageName: node
   linkType: hard
 
+"auth-crud-demo-expo-app@workspace:apps/expo":
+  version: 0.0.0-use.local
+  resolution: "auth-crud-demo-expo-app@workspace:apps/expo"
+  dependencies:
+    "@babel/core": ^7.20.0
+    "@types/react": ^18.2.21
+    "@types/react-native": ^0.72.2
+    app: "*"
+    expo: ^49.0.0
+    expo-dev-client: ~2.4.11
+    expo-linking: ~5.0.2
+    expo-router: ^2.0.5
+    expo-splash-screen: ~0.20.5
+    expo-status-bar: ~1.6.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-native: 0.72.4
+    react-native-gesture-handler: ~2.12.0
+    react-native-paper: ^5.11.1
+    react-native-reanimated: ~3.3.0
+    react-native-safe-area-context: 4.6.3
+    react-native-screens: ~3.22.0
+    react-native-url-polyfill: ^2.0.0
+    react-native-web: ~0.19.6
+    tailwindcss: ^3.0.24
+    typescript: ^5.2.2
+  languageName: unknown
+  linkType: soft
+
+"auth-crud-demo-next-app@workspace:apps/next":
+  version: 0.0.0-use.local
+  resolution: "auth-crud-demo-next-app@workspace:apps/next"
+  dependencies:
+    "@expo/next-adapter": 5.0.2
+    "@types/node": 17.0.21
+    app: "*"
+    autoprefixer: ^10.4.7
+    eslint-config-next: 13.2.0
+    next: 13.4.19
+    raf: ^3.4.1
+    setimmediate: ^1.0.5
+    tailwindcss: ^3.0.24
+  languageName: unknown
+  linkType: soft
+
 "autoprefixer@npm:^10.4.7":
   version: 10.4.14
   resolution: "autoprefixer@npm:10.4.14"
@@ -11999,51 +12044,6 @@ __metadata:
   checksum: 50a29eec2f264f2b78d891452a64112d839a30bffbff4ec065dba4af691a35b23cdb8f9107d413e25c1a9f1925644a19994c00602495cab033d53f585fdfd665
   languageName: node
   linkType: hard
-
-"supabook-expo-app@workspace:apps/expo":
-  version: 0.0.0-use.local
-  resolution: "supabook-expo-app@workspace:apps/expo"
-  dependencies:
-    "@babel/core": ^7.20.0
-    "@types/react": ^18.2.21
-    "@types/react-native": ^0.72.2
-    app: "*"
-    expo: ^49.0.0
-    expo-dev-client: ~2.4.11
-    expo-linking: ~5.0.2
-    expo-router: ^2.0.5
-    expo-splash-screen: ~0.20.5
-    expo-status-bar: ~1.6.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    react-native: 0.72.4
-    react-native-gesture-handler: ~2.12.0
-    react-native-paper: ^5.11.1
-    react-native-reanimated: ~3.3.0
-    react-native-safe-area-context: 4.6.3
-    react-native-screens: ~3.22.0
-    react-native-url-polyfill: ^2.0.0
-    react-native-web: ~0.19.6
-    tailwindcss: ^3.0.24
-    typescript: ^5.2.2
-  languageName: unknown
-  linkType: soft
-
-"supabook-next-app@workspace:apps/next":
-  version: 0.0.0-use.local
-  resolution: "supabook-next-app@workspace:apps/next"
-  dependencies:
-    "@expo/next-adapter": 5.0.2
-    "@types/node": 17.0.21
-    app: "*"
-    autoprefixer: ^10.4.7
-    eslint-config-next: 13.2.0
-    next: 13.4.19
-    raf: ^3.4.1
-    setimmediate: ^1.0.5
-    tailwindcss: ^3.0.24
-  languageName: unknown
-  linkType: soft
 
 "supports-color@npm:^5.3.0":
   version: 5.5.0
