@@ -11,6 +11,9 @@ const nextConfig = {
   transpilePackages: [
     'react-native',
     'react-native-web',
+    'react-native-vector-icons',
+    '@react-native-async-storage',
+    'react-native-paper',
     'solito',
     'moti',
     'app',

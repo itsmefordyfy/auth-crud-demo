@@ -30,8 +30,13 @@ export function LoginScreen() {
     setLoading(true);
     loginUser(client,formState.state.email, formState.state.password)
       .then(() => {
-        setLoading(false);
-        replace("/");
+
+        // defer switching screen
+        const timeId = setTimeout(() => {
+          setLoading(false);
+          replace("/");
+          clearTimeout(timeId);
+        }, 800);
       })
       .catch((errorMessage) => {
         setMessage(errorMessage);
