@@ -33,7 +33,7 @@ export const FormDatePicker = <T extends FormRecord>(
       value={value}
       onChange={handleOnChange}
       inputMode="end"
-      style={{ margin: 2 }}
+      style={{ margin: 2, minWidth: 310 }}
     />
   );
 };

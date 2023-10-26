@@ -14,11 +14,12 @@ import {
   useFormState,
   FormTextInput,
   FormDatePicker,
+  View
 } from "app/components";
 
 import { Modal, Portal, } from "react-native-paper";
 import { User } from "@supabase/supabase-js";
-import { getSession } from "app/models/auth";
+import { getSession, loginUser, logoutUser } from "app/models/auth";
 import { useClient } from "app/provider";
 import { useRouter } from "solito/router";
 import { ClientType } from "app/provider/supabase-provider";
@@ -62,14 +63,14 @@ function ContentView({ user }: ContentProps) {
     loadingView={<ActivityIndicator />}
     loadedView={(genres) => {
       if (genres === null) return <H5>Nothing to show</H5>;
-      return <TabsProvider defaultIndex={0} className="mx-8">
-        <Tabs uppercase showTextLabel mode="scrollable">
+      return <TabsProvider defaultIndex={0}>
+        <Tabs uppercase showTextLabel mode="scrollable" className="mx-2 mt-8">
           {genres.map((genre) => <TabScreen key={genre} label={genre}>
             <BookList client={client} genre={genre} />
           </TabScreen>
           )}
         </Tabs>
-      </TabsProvider>;
+      </TabsProvider>
     }} />;
 }
 
@@ -89,9 +90,15 @@ function BookList({ client, genre }: BookListProps) {
   const [onDelete, setOnDelete] = useState(false);
   const bookQuery = useBookQuery(client, genre);
   const [visible, setVisible] = useState(false);
-
+  const { replace } = useRouter();
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
+
+  const handleLogout = () => {
+    logoutUser(client).then(() => {
+      replace("/login");
+    });
+  };
 
   return <QueryView
     query={bookQuery}
@@ -128,11 +135,12 @@ function BookList({ client, genre }: BookListProps) {
           ListFooterComponent={onDelete ? <ActivityIndicator /> :
             <Row className="max-w-sm self-center">{
               (selectedCount > 0) && <Button className="m-2" onPress={handleRemove}>
-                {`Remove ${itemSizeDisplay}`}
+                <Text>{`Remove ${itemSizeDisplay}`}</Text>
               </Button>}
-              <Button mode="outlined" className="m-2" onPress={showModal}>{
-                `${selectedCount === 1 ? "Update" : "Add"}`
-              }</Button>
+              <Button mode="outlined" className="m-2" onPress={showModal}>
+                <Text>{`${selectedCount === 1 ? "Update" : "Add"}`}</Text>
+              </Button>
+              <Button mode="outlined" className="m-2" onPress={handleLogout}>Logout</Button>
             </Row>}
           renderItem={({ item: book }) => {
             const selected = isSelected(book.id);
@@ -239,9 +247,9 @@ function AddItemForm({ data, client, id, onFinish, cancel }: AddItemFormProps) {
     <FormDatePicker label="Publish Date" formState={formState} fieldName={"published_date"} />
     {loading ?
       <ActivityIndicator className="m-6" /> : <Row className="self-center">
-      <Button className="mx-2 my-6" onPress={handleSubmit}>Done</Button>
-      <Button mode="outlined" className="mx-2 my-6" onPress={cancel}>Cancel</Button>
-    </Row>}
+        <Button className="mx-2 my-6" onPress={handleSubmit}>Done</Button>
+        <Button mode="outlined" className="mx-2 my-6" onPress={cancel}>Cancel</Button>
+      </Row>}
 
   </FloatingView>;
 }
